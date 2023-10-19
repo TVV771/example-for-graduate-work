@@ -18,22 +18,22 @@ import java.util.List;
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id",nullable = false)
+    @Column(name = "user_id", nullable = false)
     private int id;
 
-    @Column(name = "login",nullable = false)
+    @Column(name = "login", nullable = false)
     private String login;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "first_name",nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name",nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "phone")
@@ -42,12 +42,20 @@ public class UserModel {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "role",nullable = false)
+    @Column(name = "role")
     private Role role;
 
-    @OneToMany(mappedBy="users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // у одного юзера много объявлений
+    @OneToMany(mappedBy = "userModel",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private List<AdModel> adModels;
 
+    // у одного юзера много комментариев
+    @OneToMany(mappedBy = "userModel",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<CommentModel> commentModels;
 
 
 }

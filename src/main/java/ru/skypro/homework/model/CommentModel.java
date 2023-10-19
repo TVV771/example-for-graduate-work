@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,10 +30,18 @@ public class CommentModel {
     @Column(name = "text")
     private String text;
 
-    @Column(name ="author")
+    /*    @Column(name ="author")
     @JoinColumn(name = "user_id")
-    private int author;
+    private int author;*/
 
-    @JoinColumn(name = "ad_id", nullable = false)
+    // появляется поле user_id в таблице comments
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserModel userModel;
+
+    // появляется поле ad_id в таблице comments
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ad_id")
     private AdModel adModel;
+
 }

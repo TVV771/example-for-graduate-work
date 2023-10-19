@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -28,20 +26,21 @@ public class AdModel {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "user_id")
+/*    @Column(name = "user_id")
     @JoinColumn(name = "author_id")
-    private int author;
+    private int author;*/
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+
+    // появляется поле user_id в таблице ad
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private UserModel userModel;
 
-    @OneToMany(mappedBy="ad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // у одного объявления много комментариев
+    @OneToMany(mappedBy = "adModel",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private List<CommentModel> commentModels;
-
-//    @Column(name = "comments")
-//    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
-//    private Collection<CommentModel> commentsList;
 
 
 }
