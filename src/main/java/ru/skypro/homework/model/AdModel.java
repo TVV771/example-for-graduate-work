@@ -27,9 +27,9 @@ public class AdModel {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "user_id")
+/*    @Column(name = "user_id")
     @JoinColumn(name = "author_id")
-    private int author;
+    private int author;*/
 
 /*
         Тоже нужно по наверное

@@ -24,7 +24,7 @@ public class CommentModel {
     @Column(name = "text")
     private String text;
 
-    @Column(name ="author")
+    @Column(name = "author")
     @JoinColumn(name = "user_id")
     private int author;
 }
