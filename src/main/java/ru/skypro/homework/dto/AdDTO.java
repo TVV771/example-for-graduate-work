@@ -18,4 +18,5 @@ public class AdDTO {
     private int price; //цена объявления
 
     private String title;//заголовок объявления
+
 }
